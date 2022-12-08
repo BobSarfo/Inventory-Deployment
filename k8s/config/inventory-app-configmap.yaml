@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: inventory-app-config
+
+data:
+  backend_url: "http://inventory-api-svc:8080"

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventory-app
+  labels:
+    app: inventory-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inventory-app
+  template:
+    metadata:
+      name: inventory-app
+      labels:
+        app: inventory-app
+    spec:
+      containers:
+        - name: inventory-app
+          image: inventory-app
+          imagePullPolicy: Never
+          env:
+            - name: REACT_BACKEND_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: backend_url
+                  name: inventory-app-config
+      
+      restartPolicy: Always
