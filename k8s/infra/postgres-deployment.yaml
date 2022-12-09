@@ -1,4 +1,3 @@
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -23,23 +22,21 @@ spec:
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  - name: postgres-secret
-                    key: username
+                  key: username
+                  name: postgres-secret
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  - name: postgres-secret
-                    key: password
+                  key: password
+                  name: postgres-secret
             - name: POSTGRES_DB
               value: inventory
-            - name: PGDATA
-              value: /var/lib/postgresql/data/pgdata
-
           volumeMounts:
-            - mountPath: /var/lib/postgresql/data
-              name: postgres-pv-storage
+            - name: pgdata
+              mountPath: /var/lib/postgresql/data
+
 
       volumes:
-        - name: postgres-pv-storage
+        - name: pgdata
           persistentVolumeClaim:
             claimName: postgres-pv-claim

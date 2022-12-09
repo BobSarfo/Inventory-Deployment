@@ -21,14 +21,27 @@ spec:
       containers:
         - name: inventory-api
           image: inventory-api
-          imagePullPolicy: Never          
+          imagePullPolicy: Never      
+          ports:
+            - containerPort: 80
+              name: api
           env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
             - name: ConnectionStrings__DBConnection
               valueFrom:
                 configMapKeyRef:
-                - name: inventory-api-config 
                   key: connection_string
+                  name: inventory-api-config
+          volumeMounts:
+            - mountPath: /app/appsettings.Development.json
+              subPath: appsettings.Development.json
+              name: inventory-config
                   
+      volumes:
+        - name: inventory-config
+          configMap:
+            name: inventory-api-config
     
 
   

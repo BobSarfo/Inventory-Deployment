@@ -4,7 +4,9 @@ metadata:
   name: inventory-app-svc
 spec:
   selector:
-    app: inventory-app-svc
+    app: inventory-app
   ports:
     - port: 8080
-  type: ClusterIP
+      protocol: TCP
+      targetPort: 80
+  type: NodePort

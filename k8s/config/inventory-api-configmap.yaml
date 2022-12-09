@@ -3,5 +3,18 @@ kind: ConfigMap
 metadata:
   name: inventory-api-config
 data:
-  connection_string: Username=postgres;Password=postgres;Include Error Detail=True;Host=postgres-svc:5432;Port=5432;Database=inventory
-
+  postgres_host: postgres-svc:5432
+  connection_string: "Host=postgres-svc:5432;User ID=postgres;Password=postgres;Database=inventory"
+  appsettings.Development.json: |-
+    {
+      "Logging": {
+        "LogLevel": {
+          "Default": "Information",
+          "Microsoft.AspNetCore": "Warning"
+        }
+      },
+      "origins": "*"
+    }
+    
+      
+      

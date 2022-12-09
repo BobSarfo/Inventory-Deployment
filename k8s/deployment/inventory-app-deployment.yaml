@@ -19,8 +19,11 @@ spec:
         - name: inventory-app
           image: inventory-app
           imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+              name: app
           env:
-            - name: REACT_BACKEND_URL
+            - name: REACT_APP_BACKEND_URL
               valueFrom:
                 configMapKeyRef:
                   key: backend_url

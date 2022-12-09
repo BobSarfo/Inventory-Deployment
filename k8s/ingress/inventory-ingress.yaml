@@ -9,23 +9,27 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: localhost
+    - host: inventory.frontend
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: inventory-app
+                name: inventory-app-svc
                 port:
                   number: 8080
-          - path: /api
+    - host: inventory.backend
+      http:
+        paths:
+          - path: /
             pathType: Prefix
             backend:
               service:
-                name: inventory-api
+                name: inventory-api-svc
                 port:
-                  number: 8080
+                  number: 8080                  
+
 
 
 

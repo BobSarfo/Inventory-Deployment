@@ -4,4 +4,4 @@ metadata:
   name: inventory-app-config
 
 data:
-  backend_url: "http://inventory-api-svc:8080"
+  backend_url: "http://inventory.backend"
